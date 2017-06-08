@@ -1,0 +1,25 @@
+  // S<:T means S is subtype of T  -> [S <: IntSet]
+  // S>:T means S is supertype of T (T is a subtype of S) -> [S >: NonEmpty]
+  def assertAllPos[S <: IntSet](r: S): S
+
+
+  // In Scala, Arrays are NOT covariant, but Lists are, because List is immutable and Array is not
+  val a: Array[NonEmpty] = Array(new NonEmpty(1, Empty, Empty))
+  val b: Array[Empty] = a -> TYPE ERRRORRRR!!!!
+
+  // Def Variance
+  If A <: B, there are 3 possible relationships between C[A] and C[B]
+  - C[A] <: C[B]                                        C is covariant (+)
+  - C[A] >: C[B]                                        C is contravariant (-)
+  - Neither C[A] or C[B] is a subtype of the other      C is nonvariant
+
+  //Roughly,
+  - covariant(+) type parameters can only appear in method results
+  - contravariant(-) type parameters can only appear in method parameters
+  - nonvariant type parameters can appear anywhere
+
+  //Example:
+  trait Function1[-T, +U] {
+    def apply(x: T): U
+  }
+
